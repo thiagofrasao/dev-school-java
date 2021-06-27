@@ -22,7 +22,7 @@ Projetos realizados no curso Dev School Java da empresa MJV Innovation, ministra
 
 # Atividades em desenvolvimento:
 
-## Criar um base de dados com JDBC
+## Criar uma base de dados com JDBC
 
 + Fazer um CRUD em Java com Postgres JDBC;
 + Montar a DAO para salvar um registro em Java com Postgres JDBC;
