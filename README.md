@@ -4,7 +4,7 @@
 
 # Sobre o projeto
 
-Projetos realizados no curso Dev School Java da empresa MJV Innovation, ministrado pelo professor Gleyson.
+Projetos realizados no curso Dev School Java da empresa MJV Innovation, ministrado pelo professor Gleyson Sampaio.
 
 
 # Atividades realizadas: 
