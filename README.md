@@ -28,6 +28,9 @@ Projetos realizados no curso Dev School Java da empresa MJV Innovation, ministra
 + Montar a DAO para salvar um registro em Java com Postgres JDBC;
 + Salvar um registro com Java JDBC;
 + Listar registros do banco de dados com Java JDBC;
++ Visualizar os dados;
++ Fazer UPDATE em Java;
++ Fazer uma exclusão em Java.
 
 
 ### Tecnologias utilizadas:
