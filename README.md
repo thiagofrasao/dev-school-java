@@ -1,6 +1,6 @@
 <h1>Dev School Java (MJV)</h1>
 
-> Status: Desenvolvendo ⚠️
+> Status: Completo
 
 # Sobre o projeto
 
@@ -118,8 +118,68 @@ Projetos realizados no curso Dev School Java da empresa MJV Innovation, ministra
   List<String> result = list.stream().filter(x -> x.charAt(0) == 'A').collect(Collectors.toList());
 
     
+## Criar uma API REST utilizando SPRING BOOT
+  
+  + Para essa atividade, inserimos no arquivo pom.xml todas as dependências necessárias ao desenvolvimento do nosso projeto, para que dessa maneira o Maven conseguisse baixá-las.
+  
+  + Classe Cadastro
+    
+      Criamos um pacote model e dentro dele criamos a classe Cadastro na qual será o nosso exemplo de entidade do banco de dados.
+        Anotamos essa classe com @Entity para mapeá-la como uma tabela do banco de dados e com o @Table para definir o nome da tabela
 
-# Atividades em desenvolvimento:
+      Anotamos o @Id com @GeneratedValue para indicar para o banco de dados que ele vai criar automaticamente os nossos Ids, então não será preciso quando eu for dar um post em cadastros eu passar o Id, o banco de dados vai criar isso automaticamente. Também criei os métodos Getters and Setters de acordo com a convenção Java Beans.
+
+  + Criamos no application.properties a configuração para o nosso banco de dados, contendo a url do banco, username, senha e o hibernate.ddl.auto, com este último eu estou indicando para o Hibernate criar as tabelas para esse bando de dados, eu não vou precisar criar, a partir do momento que eu mapeei as tabelas do banco, na hora que eu iniciar a minha aplicação o hibernate vai criar automaticamente ou atualizar a tabela.
+  
+  + Interface CadastroRepository
+  
+    Criamos uma interface CadastroRepository estendendo a classe JpaRepository.
+    A classe JpaRepository já possui diversos métodos prontos para fazer persistências no banco de dados, então métodos como save, delete, findAll, findById e outros já estão prontos para serem utilizados, dessa maneira criamos uma instância do CadastroRepository e utilizamos esses métodos na nossa classe Cadastro.
+
+  + Classe CadastroResource
+
+    A classe CadastroResource é a nossa classe Controller onde serão recebidas as requisições HTTP.No método get vamos criar a lista de cadastros em JSON e também no método Post vamos poder salvar determinado cadastro.
+    Criamos a anotação @RestController e utilizamos também a anotação @RequestMapping para criarmos a nossa URI.
+
+    Dentro do nosso Controller utilizamos a anotação @Autowired com inuito de utilzar os métodos necessários para conectar com o banco de dados.
+
+    Com a anotação @GetMapping, criamos o método GET que vai listar todos os cadastros salvos no banco de dados.
+
+    Para listar um cadastro específico, criamos um método personalizado. Um método GET que vai procurar um único cadastro através do Id.
+
+    Para salvar um determinado cadastro criamos o método POST com a anotação @PostMapping, a URI do meu POST também será /cadastro.
+
+    Para deletar o cadastro utilizamos a anotação @DeleteMapping.
+  
+  + Classe SwaggerConfig
+
+      Implementamos o SWAGGER dentro da nossa aplicação para que a gente pudesse disponibilizar uma API online navegável na nossa aplicação.
+
+      Primeiro fomos no arquivo pom.xml da nossa aplicação e inserimos as dependências do SWAGGER.
+
+      Criamos a classe SwaggerConfig e adicionamos a anotação @Configuration para o Spring saber que essa é uma classe de configuração e também inserimos a anotação @EnableSwagger2.
+
+      Nessa classe construímos dois métodos, um é o bean e o outro é um método que a gente vai chamar dentro do método bean.
+
+      O primeiro método é um método que vai retornar o tipo Docket, por isso que a gente teve que retornar o @Bean, porque esse Docket é uma classe externa da nossa aplicação onde a gente teve que através das dependências adicionais no pom.xml importar ele para dentro da aplicação. 
+
+      Primeiro iremos colocar todos os pacotes onde estão as classes Java, no nosso caso é o com.frasao.apirest, no regex, eu mostro qual será o caminho para poder acessar que é o /api, que foi o que a gente definiu quando a gente criou o nosso produto resource, a gente definiu que o @RequestMapping vai começar com o /api.
+
+      Depois eu uso o build e depois a gente chama neste método apiInfo esse metaInfo, que é o método que foi criado aqui embaixo. Esse metaInfo é apenas para informações de quem criou essa API.
+
+      Depois de colocada todas as informações, a gente retorna o objeto apiInfo com todas essas informações dentro do método @Bean que vai retornar um Docket.
+    Feito isso o Swagger já vai estar configurado na nossa aplicação.
+
+      Agora o próximo passo é ir na nossa classe CadastroResource e definir o Swagger para cada um dos métodos que a gente criou utilizando o @GetMapping, o @PostMapping o @DeleteMapping e o Update.
+
+
+     Adicionamos também a anotação @CrossOrigin(origins=”*”) adicionamos essa anotação para liberar todos os domínios de acessar a minha Api, então eu coloquei o asterisco.
+
+
+    Para acessar a api utilizando o Swagger, independe das URIs que foram criadas no CadastroResource, temos que digitar no browser http://localhost:8080/swagger-ui.html  
+
+
+
 
 ### Tecnologias utilizadas:
 <table>
@@ -130,5 +190,7 @@ Projetos realizados no curso Dev School Java da empresa MJV Innovation, ministra
     <td>Eclipse</td>
     <td>Postgres</td>
     <td>Dbeaver</td>
+    <td>JPA</td>
+    <td>Spring Boot</td>
   </tr>
 </table>
